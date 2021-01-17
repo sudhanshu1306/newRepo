@@ -1,0 +1,71 @@
+.dp{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    margin-top: 4%;
+    margin-left: 4%;
+    float: left;
+}
+.pro-data{
+    float: left;
+    font-size: 200%;
+    margin-right: 15%;
+}
+.data{
+    width: 70%;
+    float: left;
+    margin-top: 8%;
+    margin-left: 10%;
+    margin-right: 0;
+}
+.num{
+    background-color: #F5F5F5;
+    text-align: center;
+    border-radius: 7%;
+    padding: 2%;
+}
+.edit{
+    margin-top: 5%;
+    margin-left: 43%;
+    border-radius: 10%;
+}
+
+.heading{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.changedp{
+    background-color:#F5F5F5 ;
+    height: 30vh;
+    width: 30vh;
+    margin: auto;
+
+}
+
+.uploadimg{
+    padding-top: 5%;
+    padding-left: 5%;
+}
+.editpro{
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+.in{
+    width: 30vw;
+    margin: auto;
+}
+.divform{
+    width: 90vw;
+    margin-top: 5%;
+}
+
+.lab{
+    margin-left: 8vw;
+}
+.save{
+    margin-left: 35vw;
+    border-radius: 10%;
+    margin-bottom: 2%;
+}
