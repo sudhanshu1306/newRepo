@@ -8,23 +8,24 @@ import axios from "axios"
 
 const api=axios.create({
     withCredentials: true,
-    baseURL:'http://localhost:5000'
+    baseURL:'http://localhost:5000/api/message'
   });
 
 
- const proxyurl = "https://protected-tundra-67357.herokuapp.com/";
+  const proxyurl = "https://protected-tundra-67357.herokuapp.com/";
 
 export default function Chat() {
-  var socket = io.connect(proxyurl+'http://127.0.0.1:5000/');
+  // var socket = io('http://127.0.0.1:5000/');
   // console.log(socket);
-  socket.on('connection',()=>{
-    console.log("socket connected");
-  })
+  // socket.on('connection',()=>{
+  //   console.log("socket connected");
+  // });
   const [users,changeUsers]=useState([]);
   const [message,changeMessage]=useState({});
   const [arr,changeArr]=useState([]);
 
-  useEffect(()=>{ api.get("/api/message").then(res=>{
+
+  useEffect(()=>{ api.get("/").then(res=>{
       console.log(res.data);
       if(res.data.success){
         var us=res.data.Messages;
@@ -65,13 +66,13 @@ export default function Chat() {
    function handleSend(){
      console.log("I was clicked");
      var msg=document.getElementById('message');
-     console.log(socket);
-     socket.emit('chat',{
-       message:msg.value,
-       handleFrom:message.from.username,
-       from:message.from._id,
-       to:message.to._id
-     });
+     // console.log(socket);
+     // socket.emit('chat',{
+     //   message:msg.value,
+     //   handleFrom:message.from.username,
+     //   from:message.from._id,
+     //   to:message.to._id
+     // });
    }
 
 

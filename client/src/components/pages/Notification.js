@@ -9,13 +9,13 @@ import Message from '../Message.js';
 
 export default function Notification() {
 const [isClicked, setisClicked] = useState(false);
-const [buttonText, setbuttonText] = useState("Follow requests");
+const [buttonText, setbuttonText] = useState("Notification");
 
 
 function handleClick(){
     setisClicked(!isClicked);
     if(isClicked){
-        setbuttonText("Follow requests");
+        setbuttonText("Notification");
     }
     else{
         setbuttonText("Activity");
@@ -36,7 +36,7 @@ function handleClick(){
 
 
 
-      
+
 
 
         </div>

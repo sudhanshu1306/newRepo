@@ -62,9 +62,9 @@ async function handleSubmit(event){
         <form id="myForm">
             <h1>Broadcast any Message</h1>
             <label for="inputName" className="lab">Input Message</label>
-            <input type="text" className="form-control cap" name="content" onChange={handleChange} />
+            <input type="text" className="form-control in" name="content" onChange={handleChange} />
             <label for="inputName" className="lab">Enter College</label>
-            <input type="text" className="form-control cap" placeholder="Enter college" name="college" onChange={handleChange} />
+            <input type="text" className="form-control in" placeholder="Enter college" name="college" onChange={handleChange} />
             <label for="inputCategory" className="lab">Year</label>
             <select id="inputCategory" className="form-control in" name="year" onChange={handleChange}>
             <option selected>Year</option>

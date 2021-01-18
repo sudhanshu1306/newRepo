@@ -61,9 +61,9 @@ async function handleSubmit(event){
             <h1>Upload News</h1>
             <label for="inputName" className="lab">Upload picture</label>
             <input type="file" enctype="multipart/form-data" className="uploadpostpic" name="pic" />
-            <br />
+
             <label for="inputName" className="lab">Enter Caption</label>
-            <input type="text" className="form-control cap" placeholder="Enter caption" name="caption" />
+            <input type="text" className="form-control in" placeholder="Enter caption" name="caption" />
             <label for="inputCategory" className="lab">Category</label>
             <select id="inputCategory" className="form-control in"  name="category" >
                 <option selected>Casual</option>

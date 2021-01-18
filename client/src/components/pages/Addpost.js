@@ -70,7 +70,7 @@ async function handleSubmit(event){
             <input type="file" enctype="multipart/form-data" className="uploadpostpic" name="pic" />
             <br />
             <label for="inputName" className="lab">Enter Caption</label>
-            <input type="text" className="form-control cap" placeholder="Enter caption" name="caption" />
+            <input type="text" className=" uploadpostpic" placeholder="Enter caption" name="caption" />
             <button
               type="submit"
               className="btn btn-dark btn-signup"

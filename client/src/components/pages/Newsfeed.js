@@ -19,6 +19,7 @@ const api=axios.create({
    const [post,changePost]=useState([]);
    const [postUser,changePostUser]=useState([]);
    const [current,changeCurrent]=useState([]);
+   const [news,changeNews]=useState([]);
    var loggedIn="";
      function createPost(photo,postUser,current){
      var User=[];
@@ -52,6 +53,7 @@ const api=axios.create({
            changePost(res.data.Posts);
            changePostUser(res.data.postUser);
            changeCurrent(res.data.current);
+           changeNews(res.data.news);
          }
          else{
            window.location="/sign-in";
@@ -73,8 +75,7 @@ const api=axios.create({
       </div>
       <div className="newssection">
         <h1 className="newshead">News Updates</h1>
-        <Post />
-        <Post />
+        {news.map((photo)=>  createPost(photo,postUser,current))}
       </div>
       </div>
       <Footer />

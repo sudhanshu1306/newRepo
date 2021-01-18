@@ -3,7 +3,7 @@ import './Username.css'
 import axios from "axios"
 
 const api=axios.create({
-    withCredentials: true,
+    'Access-Control-Allow-Credentials': true,
     baseURL:'http://localhost:5000/api/message'
   });
 
