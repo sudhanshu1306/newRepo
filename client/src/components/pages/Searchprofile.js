@@ -13,17 +13,6 @@ const api=axios.create({
  export default function Profile() {
 
     let history=useHistory();
-    function handleEdit(){
-      history.push("/edit");
-    }
-    function handleLogout(){
-      api.get("/logout").then(res=>{
-        if(res.data.success){
-          history.replace("/sign-in");
-        }
-      });
-
-    }
 
     const [post,changePost]=useState(0);
     const [follower,changeFollower]=useState(0);
@@ -34,20 +23,19 @@ const api=axios.create({
     const [year,changeYear]=useState("");
     const [college,changeCollege]=useState("");
     var [krishna,changeKrishna] = useState([]);
+    const [flag,changeFlag]=useState(false);
     var user=[];
     // const [ram,changeram]=useState()
     const [ram,changeram]=useState([]);
+    const [current,changeCurrent]=useState([]);
 
 
 
+      useEffect(()=>{
+         console.log(history.location.state);
 
-      useEffect(()=>{ api.get("/profile").then(res=>{
-           if(res.data.success){
-            changeKrishna(res.data.user);
-            changeram(res.data.posts);
-            user=res.data.user;
-
-           }
+           var data=history.location.state.data;
+           user=data.user;
            // console.log(krishna);
            changePost( user.post.length);
            changeFollower( user.follower.length);
@@ -57,8 +45,12 @@ const api=axios.create({
            changeYear(user.year);
            changeDepartment(user.department);
            changeCollege(user.college);
-
-    });
+           changeKrishna(user);
+           changeram(data.post);
+           changeCurrent(data.current);
+           // changeram(user.post);
+           if(data.current.following.indexOf(user._id)!== -1)
+           changeFlag(true);
       }, []);
 
 
@@ -72,7 +64,7 @@ function createPost(photo){
       caption={photo.caption}
       like={photo.like}
       comment={photo.comment}
-      current={krishna._id}
+      current={current._id}
       id={photo._id}
       />
     );
@@ -122,16 +114,16 @@ function createPost(photo){
 
             <div className="div6">
 
-            <button className="buton1 btn btn-dark edit btn--large" onClick={handleEdit}>Edit Profile</button>
-           <button className="buton1 btn btn-dark edit btn--large" onClick={handleLogout}>Logout</button>
+            <button className="buton1 btn btn-dark edit btn--large" >{flag?<>Following</>:<>Follow</>}</button>
+           <button className="buton1 btn btn-dark edit btn--large" >Message</button>
             </div>
 
 
 
             </section>
             </header>
-            <h1 className="heading">Posts</h1>
-            {ram.map(createPost)}
+            <h1 className="heading">{flag?<>Posts</>:<>Follow to see posts</>}</h1>
+            {flag&&ram.map(createPost)}
             </div>
             </section>
 

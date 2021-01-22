@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
-import { Link } from 'react-router-dom';
+import { Link,useHistory } from 'react-router-dom';
 import './Navbar.css';
+import Username from './search';
+import axios from "axios";
+import SearchProfile from "./pages/Searchprofile";
+
+const api=axios.create({
+    withCredentials: true,
+    baseURL:'http://localhost:5000/api/search'
+  });
 
 function Navhome() {
+  var history=useHistory();
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-
+  const [users,changeUsers]=useState({});
+  const [flag,changeFlag]=useState(false);
+  const [found,setFound]=useState([]);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
@@ -17,10 +28,44 @@ function Navhome() {
       setButton(true);
     }
   };
-
+   function handleChange(event){
+     var s=(event.target.value);
+     if(s!==""){
+     var arr=users.filter((user)=> user.username.indexOf(s)==0);
+     console.log(arr);
+     setFound(arr);
+     changeFlag(true);
+    }
+    else
+    changeFlag(false);
+   }
   useEffect(() => {
+    api.get("/").then(res=>{
+      if(res.data.success){
+        changeUsers(res.data.users);
+      }
+    });
     showButton();
   }, []);
+  function handleData(data){
+    console.log(data);
+    if(data.user._id===data.current._id)
+    history.push("/profile");
+    else
+    {// eslint-disable-next-line no-restricted-globals
+    history.push({pathname:"/searchProfile",state:{ data:data}})}
+  }
+  function showSearch(user){
+    return (
+      <Username
+        key={user._id}
+        name={user.username}
+        pic={user.profileImage}
+        id={user._id}
+        data={handleData}
+      />
+    );
+  }
 
   window.addEventListener('resize', showButton);
 
@@ -62,11 +107,11 @@ function Navhome() {
             <li className='navbar-item'>
               <Link
                 className='nav-link'>
-                <i class="fas fa-search fa-fw"></i><input type='text' placeholder='Search ' id='search-text-input' />
+                <i class="fas fa-search fa-fw"></i><input type='text' onChange={handleChange} placeholder='Search ' id='search-text-input' />
               </Link>
             </li>
-            <li className='navbar-item'>
-              <Link to='/add' className='nav-link n1' onClick={closeMobileMenu}>
+            <li className='navbar-item n1'>
+              <Link to='/add' className='nav-link ' onClick={closeMobileMenu}>
               <i class="fas fa-fw fa-plus-square"></i>
                 Add Post
               </Link>
@@ -87,6 +132,7 @@ function Navhome() {
           </ul>
         </div>
       </nav>
+      {flag &&<div className="search">  { found.map(showSearch)} </div>}
     </>
   );
 }

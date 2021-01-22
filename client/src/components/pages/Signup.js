@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import '../Signup.css';
 import Navbar from "../Navbar";
@@ -19,9 +19,12 @@ export default function Signin(props) {
 
 
     const [userdb,changeUserDb]=useState([]);
-       api.get("/").then(res=>{
-      changeUserDb(res.data.users);
-    });
+       useEffect(()=>{
+         api.get("/").then(res=>{
+        changeUserDb(res.data.users);
+      });
+    },[]);
+
 
     const [same, changeSame]= useState({
         id: "username"

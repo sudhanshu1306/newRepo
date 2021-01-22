@@ -4,7 +4,7 @@ import axios from "axios"
 
 const api=axios.create({
     'Access-Control-Allow-Credentials': true,
-    baseURL:'http://localhost:5000/api/message'
+    baseURL:'http://localhost:5000/api/search'
   });
 
 
@@ -17,7 +17,7 @@ export default function Username(props) {
       event.preventDefault();
       // console.log(props);
       const user={
-        chatWith:props.id
+        id:props.id
       }
       let obj={};
       await api.post("/", user)
@@ -26,13 +26,7 @@ export default function Username(props) {
           if(res.data.success){
              obj=res.data;
 
-            // // let obj1=res.data.to;
-            //   changeFrom(obj.from);
-            //   // changeTo(obj1);
-            //   // changeMessage(obj2);
-            //   console.log(from);
-            //   // console.log(to);
-            //   // console.log(message);
+
           }
         })
         .catch(function (error) {

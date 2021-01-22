@@ -110,12 +110,12 @@ header{
 
 
 
-.button1{
+.buton1{
 
-    background-color: transparent;
-    border-radius: 4px;
-    color: #fff;
+    margin:2%;
 }
+
+
 .data{
     display: flex;
     align-items: center;

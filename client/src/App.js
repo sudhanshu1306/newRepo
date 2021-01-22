@@ -17,13 +17,8 @@ import AddPost from './components/pages/Addpost';
 import Notification from './components/pages/Notification';
 import College from './components/pages/College';
 import Chat from './components/pages/Chat';
-// const SERVER = "http://127.0.0.1:5000";
- // const proxyurl = "https://protected-tundra-67357.herokuapp.com/";
+import Searchprofile from './components/pages/Searchprofile';
 function App() {
-  // var socket = io.connect(proxyurl+'http://localhost:5000');
-  // socket.on('connection',()=>{
-  //   console.log("socket connected");
-  // })
   return (
     <>
       <Router>
@@ -43,7 +38,7 @@ function App() {
           <Route path='/notification' component={Notification}/>
           <Route path='/college' component={College}/>
           <Route path='/chat' component={Chat}/>
-
+          <Route path="/searchProfile" component={Searchprofile}/>
 
         </Switch>
       </Router>
