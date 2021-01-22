@@ -9,11 +9,8 @@ const api=axios.create({
 
 
 export default function Username(props) {
-  // const [from,changeFrom]=useState({});
-  // const [to,changeTo]=useState({});
-  // const [message,changeMessage]=useState({});
+
   async function handleSubmit(event) {
-      console.log("I was clicked");
       event.preventDefault();
       // console.log(props);
       const user={

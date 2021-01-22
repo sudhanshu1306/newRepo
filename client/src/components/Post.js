@@ -43,7 +43,7 @@ export default function Post (props) {
     <h5 className="card-title">{props.name}</h5>
     <p className="card-text">{props.caption}</p>
     <i onClick={handleClick} style={customStyle} className = {isLiked ? "fas fa-heart fa-2x" : "far fa-heart fa-2x"}  ></i><span>                </span>
-    <i class="far fa-comment fa-2x"></i>
+    <i className="far fa-comment fa-2x"></i>
     <div> </div>
     <strong style={customStyle}>{like} </strong><span>      </span>
     <strong >{props.comment&& props.comment.length}</strong>

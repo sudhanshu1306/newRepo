@@ -26,13 +26,7 @@ export default function Username(props) {
           if(res.data.success){
              obj=res.data;
 
-            // // let obj1=res.data.to;
-            //   changeFrom(obj.from);
-            //   // changeTo(obj1);
-            //   // changeMessage(obj2);
-            //   console.log(from);
-            //   // console.log(to);
-            //   // console.log(message);
+
           }
         })
         .catch(function (error) {

@@ -1,45 +1,64 @@
 import React,{useState,useEffect} from 'react'
-import Message from './Message.js';
+import Followcard from './Followcard.js';
+import { Link,useHistory } from 'react-router-dom';
 import axios from "axios";
 
 
 const api=axios.create({
     withCredentials: true,
-    baseURL:'http://localhost:5000/api/noti/activity'
+    baseURL:'http://localhost:5000/api'
   });
 
-export default function Followrequest() {
-  const [notification, changeNotification] = useState([]);
-  const [pic,changePic]=useState();
- var notif={};
+export default function Activity() {
+  const [pending, changePending] = useState([]);
+  var history=useHistory();
 
- useEffect(()=>{ api.get("/").then(res=>{
+
+ useEffect(()=>{ api.get("/follow").then(res=>{
      console.log(res.data);
      if(res.data.success){
-        notif= res.data.activity;
-        console.log(notification);
-        changeNotification(notif);
-        changePic(res.data.pic);
+        changePending(res.data.Users);
      }
-
-
-
  });
  }, []);
- function showNoti(x){
-     // console.log(x);
-      // console.log(x);
-      // console.log(pic);
+ async function handleData(data){
+   console.log(data);
+   const user={
+     id:data.id
+   }
+   let obj={};
+   await api.post("/search", user)
+   .then(function (res) {
+       // console.log(res.data);
+       if(res.data.success){
+          obj=res.data;
+
+
+       }
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
+     console.log(obj);
+     // eslint-disable-next-line no-restricted-globals
+      history.push({pathname:"/searchProfile",state:{ data:obj}})
+ }
+ function showPending(user){
+      console.log(user);
+
        return (
-         <Message
-         noti= {x}
-         pic={pic}
+         <Followcard
+         name= {user.username}
+         pic={user.profileImage}
+         key={user._id}
+         id={user._id}
+         data={handleData}
          />
        );
      }
     return (
       <div>
-          {notification.map(showNoti)}
+          {pending.map(showPending)}
       </div>
     )
 }

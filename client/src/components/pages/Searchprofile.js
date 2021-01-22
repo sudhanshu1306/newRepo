@@ -28,7 +28,20 @@ const api=axios.create({
     // const [ram,changeram]=useState()
     const [ram,changeram]=useState([]);
     const [current,changeCurrent]=useState([]);
-
+    function handleClick(event){
+      if(!flag){
+      var obj={
+        id:krishna._id
+      }
+      api.post("/follow",obj)
+      .then((res)=>{
+        if(res.data.success){
+          alert("Follow request sent");
+        }
+      });}
+      else
+      alert("Already following");
+    }
 
 
       useEffect(()=>{
@@ -114,7 +127,7 @@ function createPost(photo){
 
             <div className="div6">
 
-            <button className="buton1 btn btn-dark edit btn--large" >{flag?<>Following</>:<>Follow</>}</button>
+            <button className="buton1 btn btn-dark edit btn--large" onClick={handleClick} >{flag?<>Following</>:<>Follow</>}</button>
            <button className="buton1 btn btn-dark edit btn--large" >Message</button>
             </div>
 

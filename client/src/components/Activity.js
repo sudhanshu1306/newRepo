@@ -5,10 +5,10 @@ import axios from "axios";
 
 const api=axios.create({
     withCredentials: true,
-    baseURL:'http://localhost:5000/api/noti/notification'
+    baseURL:'http://localhost:5000/api/noti/activity'
   });
 
-export default function Activity() {
+export default function Notification() {
   const [notification, changeNotification] = useState([]);
   const [pic,changePic]=useState();
  var notif={};
